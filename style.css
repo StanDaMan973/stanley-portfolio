@@ -218,7 +218,7 @@ label {
   width: 100%;
   height: 100%;
   z-index: 999999;
-  background: url(assets/img/logo/pre-loader.gif) center no-repeat
+  background: url(/assets/img/02_koyta_img/loading-spin.gif) center no-repeat
     var(--clr-white);
   text-align: center;
 }
@@ -1253,7 +1253,7 @@ button.navbar-toggler:focus {
 .port-content {
   border-radius: 5px;
   background-color: var(--clr-white);
-  padding: 1rem 1rem 1rem 1rem;
+  padding: 1rem 2rem 1rem 1rem;
   position: relative;
   right: 15px;
   z-index: 1;
@@ -1273,6 +1273,8 @@ button.navbar-toggler:focus {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  margin-right: 15px;
+  text-transform: capitalize;
 }
 
 .project-box:hover .port-content {
