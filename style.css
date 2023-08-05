@@ -1275,6 +1275,11 @@ button.navbar-toggler:focus {
   height: 40px;
   margin-right: 15px;
   text-transform: capitalize;
+  transition: all 0.2s ease-in-out;
+}
+
+.port-content a:hover {
+  color: var(--clr-def);
 }
 
 .project-box:hover .port-content {
