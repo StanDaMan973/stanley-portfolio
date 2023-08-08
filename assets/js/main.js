@@ -1,52 +1,44 @@
-/* ===================================================================
-    
-  Theme Name:  Koyta - Personal Portfolio HTML Template
-  Author: themetum
-  Description: Koyta is a personal portfolio html template.
-  Version: 1.0
-    
-* ================================================================= */
-(function($) {
-    "use strict";
+(function ($) {
+	"use strict";
 
-    $(document).on('ready', function() {
+	$(document).on('ready', function () {
 
 
 		/* ==================================================
             # Bootstrap Tooltip Scroll
          =============================================== */
 		var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-			var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+		var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 			return new bootstrap.Tooltip(tooltipTriggerEl)
 		});
 
-		
+
 		/* ==================================================
 			# Portfolio Menu
 		 =============================================== */
-		$('#portfolio').mixItUp({  
+		$('#portfolio').mixItUp({
 			selectors: {
-			target: '.tile',
-			filter: '.filter',
-			sort: '.sort-btn'
+				target: '.tile',
+				filter: '.filter',
+				sort: '.sort-btn'
 			},
 
 			animation: {
-			animateResizeContainer: false,
-			effects: 'fade scale'
+				animateResizeContainer: false,
+				effects: 'fade scale'
 			}
 
 		});
-		
-		
+
+
 		/* ==================================================
 			# Data Background
 		 ===============================================*/
 
-		$("[data-background]").each(function(){
-			$(this).css("background-image","url(" + $(this).attr("data-background") +")");
+		$("[data-background]").each(function () {
+			$(this).css("background-image", "url(" + $(this).attr("data-background") + ")");
 		});
-		
+
 		/* ==================================================
 			# Parallax Background
 		 ===============================================*/
@@ -55,14 +47,14 @@
 		/* ==================================================
 			# Fun Factor Init
 		===============================================*/
+		$('.timer').countTo();
+		$('.fun-fact').appear(function () {
 			$('.timer').countTo();
-			$('.fun-fact').appear(function() {
-				$('.timer').countTo();
-			}, {
-				accY: -100
-			});
-		
-		
+		}, {
+			accY: -100
+		});
+
+
 		/* ==================================================
 			# Wow Init
 		 ===============================================*/
@@ -78,8 +70,8 @@
 		/* ==================================================
 			# Smooth Scroll
 		 =============================================== */
-		
-		$('a.smooth-menu').on('click', function(event) {
+
+		$('a.smooth-menu').on('click', function (event) {
 			var $anchor = $(this);
 			var headerH = '85';
 			$('html, body').stop().animate({
@@ -91,10 +83,10 @@
 		/* ==================================================
 			# imagesLoaded active
 		===============================================*/
-		$('#portfolio-grid,.blog-masonry').imagesLoaded(function() {
+		$('#portfolio-grid,.blog-masonry').imagesLoaded(function () {
 
 			/* Filter menu */
-			$('.mix-item-menu').on('click', 'button', function() {
+			$('.mix-item-menu').on('click', 'button', function () {
 				var filterValue = $(this).attr('data-filter');
 				$grid.isotope({
 					filter: filterValue
@@ -102,7 +94,7 @@
 			});
 
 			/* filter menu active class  */
-			$('.mix-item-menu button').on('click', function(event) {
+			$('.mix-item-menu button').on('click', function (event) {
 				$(this).siblings('.active').removeClass('active');
 				$(this).addClass('active');
 				event.preventDefault();
@@ -131,118 +123,118 @@
 		/* ==================================================
             # Typing Text
          ===============================================*/
-		
-		$(".typed").each(function() {
-		var typed = new Typed('.typed', {
-			stringsElement: '.typed-strings',
+
+		$(".typed").each(function () {
+			var typed = new Typed('.typed', {
+				stringsElement: '.typed-strings',
+				loop: true,
+				typeSpeed: 100,
+				backSpeed: 30,
+				backDelay: 2500,
+			});
+		});
+		/* ==================================================
+		    # Partner Carousel
+		 ===============================================*/
+
+		$('.partner-sldr').owlCarousel({
 			loop: true,
-			typeSpeed: 100,
-			backSpeed: 30,
-			backDelay: 2500,
+			margin: 90,
+			nav: false,
+			navText: [
+				"<i class='icofont-long-arrow-left'></i>",
+				"<i class='icofont-long-arrow-right'></i>"
+			],
+			dots: false,
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 2
+				},
+				600: {
+					items: 4
+				},
+				1000: {
+					items: 5
+				}
+			}
 		});
-		});
-        /* ==================================================
-            # Partner Carousel
-         ===============================================*/
-		
-        $('.partner-sldr').owlCarousel({
-            loop: true,
-            margin:90,
-            nav: false,
-            navText: [
-                "<i class='icofont-long-arrow-left'></i>",
-                "<i class='icofont-long-arrow-right'></i>"
-            ],
-            dots: false,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 2
-                },
-                600: {
-                    items: 4
-                },
-                1000: {
-                    items: 5
-                }
-            }
-        });
-        
+
 		/* ==================================================
             # Partner Carousel
          ===============================================*/
-		
-        $('.feed-sldr').owlCarousel({
-            loop: true,
-            margin:0,
-            nav: true,
-            navText: [
-                "<i class='fas fa-chevron-left'></i>",
-                "<i class='fas fa-chevron-right'></i>"
-            ],
-            dots: false,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
-                }
-            }
-        });
-        
+
+		$('.feed-sldr').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: true,
+			navText: [
+				"<i class='fas fa-chevron-left'></i>",
+				"<i class='fas fa-chevron-right'></i>"
+			],
+			dots: false,
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 1
+				},
+				1000: {
+					items: 1
+				}
+			}
+		});
+
 		/* ==================================================
             #  Blog Slider
          ===============================================*/
-		
-        $('.blog-sldr').owlCarousel({
-            loop: true,
-            margin:30,
-            nav: true,
-            navText: [
-                "<i class='fas fa-chevron-left'></i>",
-                "<i class='fas fa-chevron-right'></i>"
-            ],
-            dots: false,
-            autoplay: true,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 1
-                },
-                768: {
-                    items: 2
-                },
+
+		$('.blog-sldr').owlCarousel({
+			loop: true,
+			margin: 30,
+			nav: true,
+			navText: [
+				"<i class='fas fa-chevron-left'></i>",
+				"<i class='fas fa-chevron-right'></i>"
+			],
+			dots: false,
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
 				991: {
-                    items: 3
-                }
-            }
-        });
-		
-        /* ==================================================
-            # Hero Slider Carousel
-         ===============================================*/
-		
-        $('.hero-slider').owlCarousel({
-            loop: true,
-            nav: true,
-            dots: false,
-            autoplay: true,
-			autoplayTimeout:5000,
-            items: 1,
-            navText: [
-                "<i class='ti-angle-left'></i>",
-                "<i class='ti-angle-right'></i>"
-            ],
-        });
-		
-		
+					items: 3
+				}
+			}
+		});
+
+		/* ==================================================
+		    # Hero Slider Carousel
+		 ===============================================*/
+
+		$('.hero-slider').owlCarousel({
+			loop: true,
+			nav: true,
+			dots: false,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			items: 1,
+			navText: [
+				"<i class='ti-angle-left'></i>",
+				"<i class='ti-angle-right'></i>"
+			],
+		});
+
+
 		/* ==================================================
 			# Magnific popup init
 		 ===============================================*/
@@ -267,12 +259,12 @@
 			fixedContentPos: false
 		});
 
-		$('.magnific-mix-gallery').each(function() {
+		$('.magnific-mix-gallery').each(function () {
 			var $container = $(this);
 			var $imageLinks = $container.find('.item');
 
 			var items = [];
-			$imageLinks.each(function() {
+			$imageLinks.each(function () {
 				var $item = $(this);
 				var type = 'image';
 				if ($item.hasClass('magnific-iframe')) {
@@ -296,7 +288,7 @@
 				},
 				type: 'image',
 				callbacks: {
-					beforeOpen: function() {
+					beforeOpen: function () {
 						var index = $imageLinks.index(this.st.el);
 						if (-1 !== index) {
 							this.goTo(index);
@@ -306,27 +298,27 @@
 			});
 		});
 
-		 /* ==================================================
+		/* ==================================================
             # Youtube Video Init
          ===============================================*/
-        
-			$('.player').mb_YTPlayer();
-			
+
+		$('.player').mb_YTPlayer();
+
 		/* ==================================================
 			Preloader Init
 		 ===============================================*/
-		 
-		$(window).on('load', function() {
+
+		$(window).on('load', function () {
 			// Animate loader off screen
 			$(".se-pre-con").fadeOut("slow");
 		});
 
 
-	/* ==================================================
-		Contact Form Validations
-	================================================== */
+		/* ==================================================
+			Contact Form Validations
+		================================================== */
 
-		$(function() {
+		$(function () {
 
 			// Get the form.
 			var form = $('#contact-form');
@@ -335,7 +327,7 @@
 			var formMessages = $('.form-message');
 
 			// Set up an event listener for the contact form.
-			$(form).submit(function(e) {
+			$(form).submit(function (e) {
 				// Stop the browser from submitting the form.
 				e.preventDefault();
 
@@ -344,70 +336,71 @@
 
 				// Submit the form using AJAX.
 				$.ajax({
-					type: 'POST',
-					url: $(form).attr('action'),
-					data: formData
-				})
-				.done(function(response) {
-					// Make sure that the formMessages div has the 'success' class.
-					$(formMessages).removeClass('error');
-					$(formMessages).addClass('success');
+						type: 'POST',
+						url: $(form).attr('action'),
+						data: formData
+					})
+					.done(function (response) {
+						// Make sure that the formMessages div has the 'success' class.
+						$(formMessages).removeClass('error');
+						$(formMessages).addClass('success');
 
-					// Set the message text.
-					$(formMessages).text(response);
+						// Set the message text.
+						$(formMessages).text(response);
 
-					// Clear the form.
-					$('#contact-form input,#contact-form textarea').val('');
-				})
-				.fail(function(data) {
-					// Make sure that the formMessages div has the 'error' class.
-					$(formMessages).removeClass('success');
-					$(formMessages).addClass('error');
+						// Clear the form.
+						$('#contact-form input,#contact-form textarea').val('');
+					})
+					.fail(function (data) {
+						// Make sure that the formMessages div has the 'error' class.
+						$(formMessages).removeClass('success');
+						$(formMessages).addClass('error');
 
-					// Set the message text.
-					if (data.responseText !== '') {
-						$(formMessages).text(data.responseText);
-					} else {
-						$(formMessages).text('Oops! An error occured and your message could not be sent.');
-					}
-				});
+						// Set the message text.
+						if (data.responseText !== '') {
+							$(formMessages).text(data.responseText);
+						} else {
+							$(formMessages).text('Oops! An error occured and your message could not be sent.');
+						}
+					});
 			});
 
-		});		
+		});
 
 		/* ==================================================
 		# Menu
 		===============================================*/
-		
-		
-		$('.menu-tab').click(function(){
+
+
+		$('.menu-tab').click(function () {
 			$('.menu-hide').toggleClass('show');
 			$('.menu-tab').toggleClass('active');
 		});
-		$('.menu-hide-link').click(function(){
+		$('.menu-hide-link').click(function () {
 			$('.menu-hide').removeClass('show');
 			$('.menu-tab').removeClass('active');
 		});
-		
+
 
 		/* ==================================================
 			# Scroll to top
 		 =============================================== */
-        //Get the button
-        var mybutton = document.getElementById("scrtop");
+		//Get the button
+		var mybutton = document.getElementById("scrtop");
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+		// When the user scrolls down 20px from the top of the document, show the button
+		window.onscroll = function () {
+			scrollFunction()
+		};
 
-        function scrollFunction() {
-          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            mybutton.style.display = "block";
-          } else {
-            mybutton.style.display = "none";
-          }
-        }
+		function scrollFunction() {
+			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+				mybutton.style.display = "block";
+			} else {
+				mybutton.style.display = "none";
+			}
+		}
 		//Active Class Function
-		
-    }); // end document ready function
-})(jQuery); // End jQuery
 
+	}); // end document ready function
+})(jQuery); // End jQuery
