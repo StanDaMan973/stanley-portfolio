@@ -39,7 +39,9 @@
 			$(this).css("background-image", "url(" + $(this).attr("data-background") + ")");
 		});
 
-
+		/* ==================================================
+			# Parallax Background
+		 ===============================================*/
 
 
 
@@ -55,9 +57,6 @@
 			}, 1500, 'easeInOutExpo');
 			event.preventDefault();
 		});
-
-
-
 
 
 
