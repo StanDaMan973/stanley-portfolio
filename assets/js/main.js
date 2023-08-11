@@ -44,8 +44,28 @@
 		 ===============================================*/
 
 
+		/* ==================================================
+			# Fun Factor Init
+		===============================================*/
+		$('.timer').countTo();
+		$('.fun-fact').appear(function () {
+			$('.timer').countTo();
+		}, {
+			accY: -100
+		});
 
 
+		/* ==================================================
+			# Wow Init
+		 ===============================================*/
+		var wow = new WOW({
+			boxClass: 'wow', // animated element css class (default is wow)
+			animateClass: 'animated', // animation css class (default is animated)
+			offset: 0, // distance to the element when triggering the animation (default is 0)
+			mobile: true, // trigger animations on mobile devices (default is true)
+			live: true // act on asynchronously loaded content (default is true)
+		});
+		wow.init();
 
 		/* ==================================================
 			# Smooth Scroll
@@ -100,7 +120,189 @@
 
 		});
 
+		/* ==================================================
+            # Typing Text
+         ===============================================*/
 
+		$(".typed").each(function () {
+			var typed = new Typed('.typed', {
+				stringsElement: '.typed-strings',
+				loop: true,
+				typeSpeed: 100,
+				backSpeed: 30,
+				backDelay: 2500,
+			});
+		});
+		/* ==================================================
+		    # Partner Carousel
+		 ===============================================*/
+
+		$('.partner-sldr').owlCarousel({
+			loop: true,
+			margin: 90,
+			nav: false,
+			navText: [
+				"<i class='icofont-long-arrow-left'></i>",
+				"<i class='icofont-long-arrow-right'></i>"
+			],
+			dots: false,
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 2
+				},
+				600: {
+					items: 4
+				},
+				1000: {
+					items: 5
+				}
+			}
+		});
+
+		/* ==================================================
+            # Partner Carousel
+         ===============================================*/
+
+		$('.feed-sldr').owlCarousel({
+			loop: true,
+			margin: 0,
+			nav: true,
+			navText: [
+				"<i class='fas fa-chevron-left'></i>",
+				"<i class='fas fa-chevron-right'></i>"
+			],
+			dots: false,
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 1
+				},
+				1000: {
+					items: 1
+				}
+			}
+		});
+
+		/* ==================================================
+            #  Blog Slider
+         ===============================================*/
+
+		$('.blog-sldr').owlCarousel({
+			loop: true,
+			margin: 30,
+			nav: true,
+			navText: [
+				"<i class='fas fa-chevron-left'></i>",
+				"<i class='fas fa-chevron-right'></i>"
+			],
+			dots: false,
+			autoplay: true,
+			responsive: {
+				0: {
+					items: 1
+				},
+				600: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				991: {
+					items: 3
+				}
+			}
+		});
+
+		/* ==================================================
+		    # Hero Slider Carousel
+		 ===============================================*/
+
+		$('.hero-slider').owlCarousel({
+			loop: true,
+			nav: true,
+			dots: false,
+			autoplay: true,
+			autoplayTimeout: 5000,
+			items: 1,
+			navText: [
+				"<i class='ti-angle-left'></i>",
+				"<i class='ti-angle-right'></i>"
+			],
+		});
+
+
+		/* ==================================================
+			# Magnific popup init
+		 ===============================================*/
+		$(".popup-link").magnificPopup({
+			type: 'image',
+			// other options
+		});
+
+		$(".popup-gallery").magnificPopup({
+			type: 'image',
+			gallery: {
+				enabled: true
+			},
+			// other options
+		});
+
+		$(".popup-youtube, .popup-vimeo, .popup-gmaps").magnificPopup({
+			type: "iframe",
+			mainClass: "mfp-fade",
+			removalDelay: 160,
+			preloader: false,
+			fixedContentPos: false
+		});
+
+		$('.magnific-mix-gallery').each(function () {
+			var $container = $(this);
+			var $imageLinks = $container.find('.item');
+
+			var items = [];
+			$imageLinks.each(function () {
+				var $item = $(this);
+				var type = 'image';
+				if ($item.hasClass('magnific-iframe')) {
+					type = 'iframe';
+				}
+				var magItem = {
+					src: $item.attr('href'),
+					type: type
+				};
+				magItem.title = $item.data('title');
+				items.push(magItem);
+			});
+
+			$imageLinks.magnificPopup({
+				mainClass: 'mfp-fade',
+				items: items,
+				gallery: {
+					enabled: true,
+					tPrev: $(this).data('prev-text'),
+					tNext: $(this).data('next-text')
+				},
+				type: 'image',
+				callbacks: {
+					beforeOpen: function () {
+						var index = $imageLinks.index(this.st.el);
+						if (-1 !== index) {
+							this.goTo(index);
+						}
+					}
+				}
+			});
+		});
+
+		/* ==================================================
+            # Youtube Video Init
+         ===============================================*/
+
+		$('.player').mb_YTPlayer();
 
 		/* ==================================================
 			Preloader Init
@@ -112,6 +314,58 @@
 		});
 
 
+		/* ==================================================
+			Contact Form Validations
+		================================================== */
+
+		$(function () {
+
+			// Get the form.
+			var form = $('#contact-form');
+
+			// Get the messages div.
+			var formMessages = $('.form-message');
+
+			// Set up an event listener for the contact form.
+			$(form).submit(function (e) {
+				// Stop the browser from submitting the form.
+				e.preventDefault();
+
+				// Serialize the form data.
+				var formData = $(form).serialize();
+
+				// Submit the form using AJAX.
+				$.ajax({
+						type: 'POST',
+						url: $(form).attr('action'),
+						data: formData
+					})
+					.done(function (response) {
+						// Make sure that the formMessages div has the 'success' class.
+						$(formMessages).removeClass('error');
+						$(formMessages).addClass('success');
+
+						// Set the message text.
+						$(formMessages).text(response);
+
+						// Clear the form.
+						$('#contact-form input,#contact-form textarea').val('');
+					})
+					.fail(function (data) {
+						// Make sure that the formMessages div has the 'error' class.
+						$(formMessages).removeClass('success');
+						$(formMessages).addClass('error');
+
+						// Set the message text.
+						if (data.responseText !== '') {
+							$(formMessages).text(data.responseText);
+						} else {
+							$(formMessages).text('Oops! An error occured and your message could not be sent.');
+						}
+					});
+			});
+
+		});
 
 		/* ==================================================
 		# Menu
