@@ -818,6 +818,7 @@ button.navbar-toggler:focus {
 .menu-info:hover {
   background-color: var(--clr-bg);
 }
+
 .menu-info .menu-info-icon i {
   height: 3.5rem;
   width: 3.5rem;
